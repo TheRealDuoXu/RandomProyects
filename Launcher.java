@@ -51,7 +51,14 @@ final static char OP_EXIT = 'E';
 						+ "\n Use current balance? Y/N" + account.balance);
 				char useBalance = input.next().toUpperCase().charAt(0);
 						if(useBalance == 'N') {//use balance no
-							
+							System.out.println("Input balance");
+							float yourBalance = input.nextFloat();
+							System.out.println("Input years");
+							int years = input.nextInt();
+							System.out.println("Input interest");
+							float interest = input.nextFloat();
+							float result = account.interestCalc(years, interest,yourBalance);
+							System.out.println(result);
 						}else { // use balance yes
 							System.out.println("you will be calculating the interest for the current balance" + account.balance);
 							System.out.println("please input years: ");
@@ -74,7 +81,7 @@ final static char OP_EXIT = 'E';
 					Exception e = new Exception();
 					throw (e);
 				}catch(Exception e) {
-					
+					System.out.println("Exception has occured" + e);
 				}
 			}
 		}
