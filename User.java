@@ -83,7 +83,7 @@ float interestCalc(int years,float interest) {
 	}// checked starting conditions, leasing input
 	input.close();
 	System.out.println("Everything has been setup correctly" + years + " years, " + interest + " interest"
-			+ "\n aplaying standart inflation rate 2.0%" );
+			+ "\n applying standart inflation rate 2.0%" );
 	interest -= 2;
 	// calculate interest by for loop
 	for (int i=3;i<years;i++) { // condicion an = a1 * exponent(r (n-1)), no quería buscar la funcion en Math
@@ -91,8 +91,32 @@ float interestCalc(int years,float interest) {
 		result = balance * interest;
 	}
 	
-	return result;
-	
-}
+	return result;}
 
+	
+float interestCalc (int years, float interest, float yourBalance) {
+	float result = yourBalance;
+	Scanner input = new Scanner(System.in);
+	while(years <= 0 && interest <= 0) {
+		if (years < 0) {
+			System.out.println("The number of years must be an integer greater than 0"
+					+ " \n your input -" + years);
+			years = input.nextInt();
+		}
+		if (interest <= 0) {
+			System.out.println("The interest rate must be a float greater than 0"
+					+ " \n your input -" + interest);
+			interest = input.nextFloat();
+		}
+	input.close();
+	System.out.println("Everything has been setup correctly" + years + " years, " + interest + " interest" + yourBalance + "balance"
+			+ "\n applying standart inflation rate 2.0%" );
+	interest -= 2;
+	// calculate interest by for loop
+	for (int i=3;i<years;i++) { // condicion an = a1 * exponent(r (n-1)), no quería buscar la funcion en Math
+	System.out.println("year: " + (i-2) + "balance: " + result);
+		result = yourBalance * interest;
+	}
+	}
+	return result;}
 }// class User ends
