@@ -1,5 +1,6 @@
 package simpleATM;
 import java.util.Scanner;
+import java.io.*; //Especificar después, no me se la biblioteca
 public class Launcher {
 static boolean exitFlag=false;
 //estÃ¡ticos, ya que no se crean ningun objeto Launcher
@@ -12,17 +13,32 @@ final static char OP_INTEREST = 'D';
 final static char OP_EXIT = 'E';
 final static char OP_GUEST = 'G';
 
+
 	public static void main(String[] args) {
+		int id;
+		String name;
 		Scanner input = new Scanner(System.in);
 		System.out.print("Hello and welcome to FirstBank"
-				+ "\n please create your demo account"
-				+ "\n ------------------------------"
-				+ "\n your name: ");
-		String name = input.next();
-		System.out.print("\n thanks " + name + 
-				"\n assign yourself an id:");
-		int id = input.nextInt();
+				+ "\n Do you already have an account? Y / N");
+		String hasAccount = input.next();
+		if (hasAccount == "Y") {
+			System.out.println("Introduce your id:");
+			String s = input.next();
+			id = Integer.parseInt(s);
+		} else {
+			System.out.println("Introduce your name:");
+		name = input.next();
+
+		System.out.println("Thanks " + name);
+		do {
+		System.out.println("Assign yourself an id (6 digits):");
+		id = input.nextInt();
 		input.nextLine();
+		} while (id.length != 6);
+		if (id.idTaken) {
+			System.out.println ("That id is taken, choose another one")
+		}
+		}
 		System.out.print("\n Searching for your account");
 		User account = new User(name,id);
 		char option = account.menu();
@@ -69,7 +85,7 @@ final static char OP_GUEST = 'G';
 		return currentSelection;
 	}
 	
-public static void atmInterface(User account,char option) {
+	public static void atmInterface(User account,char option) {
 		Scanner input = new Scanner(System.in);
 		
 		while (!exitFlag) {

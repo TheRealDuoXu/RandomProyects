@@ -84,9 +84,21 @@ return verified;
 }//end comparator
 
 private void fileWriter(String s) {
-	try (FileWriter fw = new FileWriter(database)) {
+	try (FileWriter fw = new FileWriter(id + ".txt")) {
 		fw.write(s);
+		fw.close()
 	}catch(IOException e) {
 		System.out.println(e);
 }
-	}}
+}
+public boolean idTaken (int idChosen) {
+	FileReader tester = new FileReader("IdList.txt");
+	
+}
+
+
+
+
+
+
+}
