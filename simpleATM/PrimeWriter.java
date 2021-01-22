@@ -67,7 +67,7 @@ public static void pwMerger(String name1,String name2) { // merges two documents
 				fw.write(fr2.read()); // copies file 2
 			}
 			}catch(FileNotFoundException e) {
-				System.out.println("failure tu read " + name2);
+				System.out.println("failure to read " + name2);
 			}
 		
 		// destiny catch clauses
@@ -84,5 +84,16 @@ public static void pwMerger(String name1,String name2) { // merges two documents
 		System.out.println(" other IO exception " + MERGE_DESTINY_FNAME + e2);
 		e2.printStackTrace();
 	}
+}
+
+public static boolean compare (int password, int id) {
+	int filePassword = 1;
+	FileReader comparer = new FileReader(id + ".txt");	
+	BufferedReader br = new BufferedReader(comparer);
+	while (br.readLine() != null) {
+	int primeNumbers = Integer.parseInt(br.readLine());
+	filePassword = filePassword*primeNumbers;
+	}
+	return ((filePassword == password) ? true : false);
 }
 }

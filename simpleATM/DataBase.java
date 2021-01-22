@@ -1,5 +1,6 @@
 package simpleATM;
 
+import java.util.Scanner;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -84,9 +85,21 @@ return verified;
 }//end comparator
 
 private void fileWriter(String s) {
-	try (FileWriter fw = new FileWriter(database)) {
+	try (FileWriter fw = new FileWriter(id + ".txt")) {
 		fw.write(s);
+		fw.close()
 	}catch(IOException e) {
 		System.out.println(e);
 }
-	}}
+}
+public boolean idTaken (int idChosen) throws FileNotFoundException {
+	try { Scanner idReader = new Scanner("IdList.txt"); }
+	catch (FileNotFoundException);
+	do {
+		if (int ids = idReader.nextLine() == idChosen) {
+			return true;
+		}
+	} while (idReader.hasNextLine());
+	return false;
+}
+}

@@ -1,5 +1,7 @@
 package simpleATM;
 import java.util.Scanner;
+import java.lang.Math;
+import java.io.*; //Especificar después, no me se la biblioteca
 public class Launcher {
 static boolean exitFlag=false;
 //estÃ¡ticos, ya que no se crean ningun objeto Launcher
@@ -12,18 +14,54 @@ final static char OP_INTEREST = 'D';
 final static char OP_EXIT = 'E';
 final static char OP_GUEST = 'G';
 
+
 	public static void main(String[] args) {
+		int id;
+		int[] primes = [int(learned[int(trunc(Math.random()*learned()))]), int(learned[int(trun(Math.random()*learned()))])];
+		DataBase database;
+		PrimeWriter pw;
+		String name;
 		Scanner input = new Scanner(System.in);
-		System.out.print("Hello and welcome to FirstBank"
-				+ "\n please create your demo account"
-				+ "\n ------------------------------"
-				+ "\n your name: ");
-		String name = input.next();
-		System.out.print("\n thanks " + name + 
-				"\n assign yourself an id:");
-		int id = input.nextInt();
+		System.out.print("Hello and welcome to FirstBank."
+				+ "\n Do you already have an account? Y / N");
+		String hasAccount = input.next();
+		if (hasAccount == "N") {
+			/*System.out.println("Introduce your name:"); //Si no buscamos una forma de implementar el nombre no deberiamos ponerlo
+		name = input.next();
+
+		System.out.println("Thanks " + name);*/
+		do {
+		System.out.println("Assign yourself an id (6 digits):");
+		id = input.nextInt();
 		input.nextLine();
-		System.out.print("\n Searching for your account");
+		while (database.idTaken(id)) {
+			System.out.println ("That id is taken, choose another one:");
+			id = input.nextInt();
+		}
+		} while (id < 99999);
+		try { try { FileWriter fwid = new FileWriter("IdList.txt");
+		fwid.write(id + "\n");
+		}catch (FileNotFoundException e) {
+			File idList = new File("IdList.txt");
+			FileWriter fwid = new FileWriter(idList);
+			fwid.write(id + "\n");
+		}}catch (IOException e) {System.out.println("There has been an error," + e);}
+		pw.wrt(id, primes[]);
+		int passwordAssigned = primes[0] * primes[1];
+		System.out.println("This is your password" + passwordAssigned);
+		System.out.println("Thank you for signing up.");
+		}
+		System.out.println("Introduce your id:");
+		String s = input.next();
+		id = Integer.parseInt(s);
+		System.out.println("Introduce your password:");
+		s = input.next();
+		int password = Integer.parseInt(s);
+		try {if (!pw.compare(password, id)) {
+			throw PasswordMissmatchException;
+		}}catch (PasswordMissmatchException e) {
+			System.out.println ("Wrong password");
+		}
 		User account = new User(name,id);
 		char option = account.menu();
 		
@@ -69,7 +107,7 @@ final static char OP_GUEST = 'G';
 		return currentSelection;
 	}
 	
-public static void atmInterface(User account,char option) {
+	public static void atmInterface(User account,char option) {
 		Scanner input = new Scanner(System.in);
 		
 		while (!exitFlag) {
